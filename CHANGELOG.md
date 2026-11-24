@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+### Features
+
+- Visual editor: the card editor shows the map with an editing layer. Drag items (rack devices snap to half units, invalid positions are refused), resize them, draw cables with Shift+click, move waypoints and reconnect cable ends by drag and drop, and edit every option in forms generated from the card's own key lists. Undo/redo, grid, zoom and a full-screen mode are included. The editor lives in `ha-homelab-map-editor.js`, next to the card, and is only loaded when the editor opens; it places and validates items with the card's own functions, so YAML written by it follows the same rules.
+
+### Development
+
+- `test/editor.js` checks that the editor only offers keys the card accepts, that every new item it creates is valid, and its rack-unit, anchor and id helpers.
+
 ## 1.3.0
 
 ### Features

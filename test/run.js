@@ -38,6 +38,7 @@ const suites = [
   ["check", await run("check", { CFG: config, STATES: statesFile }), (lines) => lines.includes("ALL PASSED")],
   ["zoom", await run("zoom"), (lines) => lines.some((line) => line.startsWith("ok "))],
   ["register", await run("register"), (lines) => lines.some((line) => line.startsWith("ok "))],
+  ["editor", await run("editor"), (lines) => lines.includes("ALL PASSED")],
 ];
 
 let failed = false;

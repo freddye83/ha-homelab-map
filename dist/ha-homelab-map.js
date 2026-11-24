@@ -1120,6 +1120,25 @@ const placeItems = (items, origin, out, group = null, parent = null, owner = nul
 
 class HaHomelabMap extends HTMLElement {
   static version = VERSION;
+  // Shared with the visual editor (ha-homelab-map-editor.js) so that it places, validates and connects
+  // items exactly like the card does.
+  static editorKit = Object.freeze({
+    version: VERSION,
+    ITEM_KEYS,
+    CHILD_TYPES,
+    LINE_KEYS,
+    DATALINE_KEYS,
+    CARD_KEYS,
+    DEVICE_TYPES,
+    EDGES,
+    RACK,
+    TEXTURES: Object.keys(TEXTURES),
+    BACKGROUNDS,
+    placeItems,
+    edgeAnchor,
+    roundedPath,
+    validateConfig,
+  });
   #config = null;
   #hass = null;
   #built = false;
@@ -1243,6 +1262,11 @@ class HaHomelabMap extends HTMLElement {
       if (isLink(target.dataset.url)) window.open(target.dataset.url, "_blank", "noopener");
     } else this.dispatchEvent(new CustomEvent("hass-more-info", { detail: { entityId: target.dataset.entity }, bubbles: true, composed: true }));
     return true;
+  }
+
+  static async getConfigElement() {
+    await import(new URL(`./${CARD_TYPE}-editor.js?v=${VERSION}`, import.meta.url).href);
+    return document.createElement(`${CARD_TYPE}-editor`);
   }
 
   static getStubConfig() {

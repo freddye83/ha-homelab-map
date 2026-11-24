@@ -59,7 +59,7 @@ Already installed it this way? Nothing to change – updates keep coming through
 
 ### Manual
 
-1. Download `ha-homelab-map.js` and the `JetBrainsMono-*.woff2` files from the [latest release](https://github.com/kjanas/ha-homelab-map/releases) (or the `dist` folder).
+1. Download `ha-homelab-map.js`, `ha-homelab-map-editor.js` and the `JetBrainsMono-*.woff2` files from the [latest release](https://github.com/kjanas/ha-homelab-map/releases) (or the `dist` folder). The editor file is only loaded when you open the card editor.
 2. Copy them together into `config/www/ha-homelab-map/`.
 3. Add a dashboard resource: **Settings → Dashboards → ⋮ → Resources → Add resource**, URL `/local/ha-homelab-map/ha-homelab-map.js`, type **JavaScript module**.
 4. Reload the browser.
@@ -104,6 +104,18 @@ datalines:
 ```
 
 Replace the entity ids with your own, then turn on the **Debug** switch: it shows a grid, the coordinates under the cursor and the id of the item you hover, which makes placing things quick.
+
+## Visual editor
+
+YAML stays the reference, but the card editor also has a visual mode: the map is shown with an editing layer on top, and every change is written back to the same YAML.
+
+- **Move** an item by dragging it. Nested items stay relative to their parent, rack devices and fan panels snap to half units, and a position the card would reject (two rack devices in the same unit) is refused while you drag. **Alt** moves freely, the arrow keys nudge by 1 px (**Shift**: 10 px).
+- **Resize** devices, pools, disks, LEDs, chips and fans with the handle at the bottom-right corner; racks and rack devices resize in units.
+- **Draw a cable**: select a device, then **Shift**+click another device or port. On a selected cable, drag the waypoints, drop an orange end on another device or port to reconnect it, and double-click to add or remove a waypoint.
+- **Items**, **Cables** and **Card** tabs: the item tree (add an item where it is allowed, duplicate, delete, reorder), and a form for the selected item, cable or card. The forms are built from the same key lists the card validates, so they only offer options that exist; renaming an id updates the cables and toggles that use it.
+- **Undo / redo** (Ctrl+Z / Ctrl+Y), a 1, 5 or 10 px grid, zoom, and a **full screen** mode with the settings in a side column.
+
+The editor shows the card's own validation message as soon as a change makes the configuration invalid.
 
 ## Documentation
 

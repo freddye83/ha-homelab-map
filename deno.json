@@ -6,12 +6,14 @@
     "lineWidth": 160,
     "include": [
       "dist/ha-homelab-map.js",
+      "dist/ha-homelab-map-editor.js",
       "test/*.js"
     ]
   },
   "lint": {
     "include": [
-      "dist/ha-homelab-map.js"
+      "dist/ha-homelab-map.js",
+      "dist/ha-homelab-map-editor.js"
     ],
     "rules": {
       "exclude": [

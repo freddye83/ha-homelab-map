@@ -13,6 +13,8 @@ A Lovelace card (`type: custom:ha-homelab-map`) that draws a homelab:
 
 Everything is placed by hand with pixel coordinates. The card does no automatic layout, so you must compute positions yourself, and you can only compute them correctly with the geometry below.
 
+The card editor also has a visual mode (drag, resize, draw cables) that writes the same YAML with the same rules. If the user has moved things there, ask them for the current YAML (the editor's code view) before proposing changes.
+
 ## Hard rules (the card rejects configs that break them)
 
 1. **Only documented properties exist.** Any other key fails with `unknown property – allowed: …`. Never invent options (no `name:` on devices, no `color:` on lines, no `align:` on labels). If the user wants something that is not listed here or in the docs, say it is not supported yet instead of guessing.
